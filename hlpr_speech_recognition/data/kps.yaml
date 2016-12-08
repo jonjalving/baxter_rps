@@ -1,0 +1,41 @@
+tag: "ONE"
+speech: ["ONE"]
+---
+tag: "TWO"
+speech: ["TWO"]
+---
+tag: "THREE"
+speech: ["THREE"]
+---
+tag: "FOUR"
+speech: ["FOUR"]
+---
+tag: "FIVE"
+speech: ["FIVE"]
+---
+tag: "SIX"
+speech: ["SIX"]
+---
+tag: "SEVEN"
+speech: ["SEVEN"]
+---
+tag: "EIGHT"
+speech: ["EIGHT"]
+---
+tag: "NINE"
+speech: ["NINE"]
+---
+tag: "ZERO"
+speech: ["ZERO"]
+---
+tag: "PLUS"
+speech: ["PLUS","ADDED TO", "ADDED"]
+---
+tag: "MINUS"
+speech: ["MINUS","SUBTRACT"]
+---
+tag: "TIMES"
+speech: ["TIMES","MULTIPLY BY", "MULTIPLY"]
+---
+tag: "EQUALS"
+speech: ["EQUALS?","IS EQUAL TO"]

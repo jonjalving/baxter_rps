@@ -1,0 +1,107 @@
+Language model created by QuickLM on Wed Oct 19 20:12:08 EDT 2016
+Copyright (c) 1996-2010 Carnegie Mellon University and Alexander I. Rudnicky
+
+The model is in standard ARPA format, designed by Doug Paul while he was at MITRE.
+
+The code that was used to produce this language model is available in Open Source.
+Please visit http://www.speech.cs.cmu.edu/tools/ for more information
+
+The (fixed) discount mass is 0.5. The backoffs are computed using the ratio method.
+This model based on a corpus of 18 sentences and 23 words
+
+\data\
+ngram 1=23
+ngram 2=39
+ngram 3=22
+
+\1-grams:
+-0.8092 </s> -0.3010
+-0.8092 <s> -0.2278
+-2.0645 ADDED -0.2935
+-2.0645 BY -0.2278
+-2.0645 EIGHT -0.2278
+-2.0645 EQUAL -0.2935
+-2.0645 EQUALS? -0.2278
+-2.0645 FIVE -0.2278
+-2.0645 FOUR -0.2278
+-2.0645 IS -0.2973
+-2.0645 MINUS -0.2278
+-2.0645 MULTIPLY -0.2973
+-2.0645 NINE -0.2278
+-2.0645 ONE -0.2278
+-2.0645 PLUS -0.2278
+-2.0645 SEVEN -0.2278
+-2.0645 SIX -0.2278
+-2.0645 SUBTRACT -0.2278
+-2.0645 THREE -0.2278
+-2.0645 TIMES -0.2278
+-1.7634 TO -0.2278
+-2.0645 TWO -0.2278
+-2.0645 ZERO -0.2278
+
+\2-grams:
+-1.5563 <s> ADDED 0.0000
+-1.5563 <s> EIGHT 0.0000
+-1.5563 <s> EQUALS? 0.0000
+-1.5563 <s> FIVE 0.0000
+-1.5563 <s> FOUR 0.0000
+-1.5563 <s> IS 0.0000
+-1.5563 <s> MINUS 0.0000
+-1.5563 <s> MULTIPLY 0.0000
+-1.5563 <s> NINE 0.0000
+-1.5563 <s> ONE 0.0000
+-1.5563 <s> PLUS 0.0000
+-1.5563 <s> SEVEN 0.0000
+-1.5563 <s> SIX 0.0000
+-1.5563 <s> SUBTRACT 0.0000
+-1.5563 <s> THREE 0.0000
+-1.5563 <s> TIMES 0.0000
+-1.5563 <s> TWO 0.0000
+-1.5563 <s> ZERO 0.0000
+-0.3010 ADDED TO 0.0000
+-0.3010 BY </s> -0.3010
+-0.3010 EIGHT </s> -0.3010
+-0.3010 EQUAL TO 0.0000
+-0.3010 EQUALS? </s> -0.3010
+-0.3010 FIVE </s> -0.3010
+-0.3010 FOUR </s> -0.3010
+-0.3010 IS EQUAL 0.0000
+-0.3010 MINUS </s> -0.3010
+-0.3010 MULTIPLY BY 0.0000
+-0.3010 NINE </s> -0.3010
+-0.3010 ONE </s> -0.3010
+-0.3010 PLUS </s> -0.3010
+-0.3010 SEVEN </s> -0.3010
+-0.3010 SIX </s> -0.3010
+-0.3010 SUBTRACT </s> -0.3010
+-0.3010 THREE </s> -0.3010
+-0.3010 TIMES </s> -0.3010
+-0.3010 TO </s> -0.3010
+-0.3010 TWO </s> -0.3010
+-0.3010 ZERO </s> -0.3010
+
+\3-grams:
+-0.3010 <s> ADDED TO
+-0.3010 <s> EIGHT </s>
+-0.3010 <s> EQUALS? </s>
+-0.3010 <s> FIVE </s>
+-0.3010 <s> FOUR </s>
+-0.3010 <s> IS EQUAL
+-0.3010 <s> MINUS </s>
+-0.3010 <s> MULTIPLY BY
+-0.3010 <s> NINE </s>
+-0.3010 <s> ONE </s>
+-0.3010 <s> PLUS </s>
+-0.3010 <s> SEVEN </s>
+-0.3010 <s> SIX </s>
+-0.3010 <s> SUBTRACT </s>
+-0.3010 <s> THREE </s>
+-0.3010 <s> TIMES </s>
+-0.3010 <s> TWO </s>
+-0.3010 <s> ZERO </s>
+-0.3010 ADDED TO </s>
+-0.3010 EQUAL TO </s>
+-0.3010 IS EQUAL TO
+-0.3010 MULTIPLY BY </s>
+
+\end\
