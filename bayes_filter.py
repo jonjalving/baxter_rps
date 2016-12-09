@@ -7,11 +7,12 @@ class bayes_filter:
 
 	def __init__(self,states,initial_belief):
 		self.logger = logging.getLogger('__name__')
-		hdlr = logging.FileHandler('/home/cs4752/ros_ws/src/baxter_rps/baxter_rps.log')
+		hdlr = logging.FileHandler('/home/cs4752/ros_ws/src/baxter_rps/baxter_bayes_filter.log')
 		formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 		hdlr.setFormatter(formatter)
 		self.logger.addHandler(hdlr) 
 		self.logger.setLevel(logging.INFO)
+		self.logger.info("######################################################################")
 		self.actions = ["win","tie","lose"]
 		self.states = states
 		self.belief = initial_belief

@@ -20,11 +20,12 @@ import numpy as np
 import logging
 
 logger = logging.getLogger('__name__')
-hdlr = logging.FileHandler('baxter_rps.log')
+hdlr = logging.FileHandler('/home/cs4752/ros_ws/src/baxter_rps/baxter_brain.log')
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 hdlr.setFormatter(formatter)
 logger.addHandler(hdlr) 
 logger.setLevel(logging.INFO)
+logger.info("######################################################################")
 class Baxter_RPS:
 	def __init__(self,strategy):
 		self.listening_flag = False
@@ -59,8 +60,11 @@ class Baxter_RPS:
 			#	time.sleep(0.01)
 			time.sleep(1)
 			speak(self.color_commentary())
+			logging.info(self.last_outcome+", delay: "+str(self.interval))
 		else:
 			print "heard no"
+			now = time.time()
+			logger.info("Ending game at "+str(now)+ "Delay before NO was: "+str(now - self.start_interval))
 			self.playing_flag = False
 		self.listening_flag = False
 		return
@@ -177,6 +181,7 @@ if __name__ == '__main__':
 	rospy.Subscriber('/user_hand',std_msgs.msg.String,bgame.hand_callback)
 	speak("Hi,my name is Baxter, wanna play R P S with me?")
 	bgame.start_interval = time.time()
+	logger.info("Starting game at "+str(bgame.start_interval))
 	bgame.game_loop()
 	#rospy.spin()
 	#load the probability models
