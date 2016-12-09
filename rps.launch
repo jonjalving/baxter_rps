@@ -11,9 +11,11 @@
     <!-- Start the hlpr_speech_recognizer 
      Note: just an example of how to launch with params 
            like the gui, but not tested with mic input! -->
-    <node name="speech_recognizer" pkg="hlpr_speech_recognition" type="speech_recognizer" respawn="false" />   
+    <node name="speech_recognizer" pkg="hlpr_speech_recognition" type="speech_recognizer" respawn="false"  >
+      <param name="/speech/rec_thresh" value="-500" />
+    </node>   
   
    <node pkg="baxter_rps" type="baxter_brain.py" name="baxter_brain" respawn="false" output="screen"/>
-   <node pkg="baxter_rps" type="dummy_cam.py" name="dummy_cam" respawn="false" output="screen"/>
+   <node pkg="baxter_rps" type="cam.py" name="dummy_cam" respawn="false" />
     
 </launch>

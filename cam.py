@@ -7,7 +7,7 @@ import bisect
 import std_msgs.msg
 
 rospy.init_node('hand_detector')
-pub = rospy.Publisher('user_hand', std_msgs.msg.String, queue_size=1)
+pub = rospy.Publisher('user_hand', std_msgs.msg.String, queue_size=1, tcp_nodelay=True)
 
 numframe = 0
 cap = cv2.VideoCapture(0)
@@ -79,8 +79,8 @@ while( cap.isOpened() ):
     except:
         print "error"
 
-    cv2.imshow('output',drawing)
-    cv2.imshow('input',img)
+    # cv2.imshow('output',drawing)
+    # cv2.imshow('input',img)
                 
     k = cv2.waitKey(1)
     if k == 27:

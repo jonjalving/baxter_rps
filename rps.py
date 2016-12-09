@@ -22,23 +22,23 @@ class RPS:
         
         #make a fist
         self.rock()
-    def rock(self,delay=0.5):
+    def rock(self,delay=0.01):
         #make a fist
         self.rps_controller.setTarget(0,self.CLOSED)
         self.rps_controller.setTarget(1,self.CLOSED)
-        self.rps_controller.setTarget(2,self.CLOSED-2000)
+        self.rps_controller.setTarget(2,self.CLOSED)
         time.sleep(delay)
-    def paper(self,delay=0.5):
+    def paper(self,delay=0.01):
         #make an open palm
         self.rps_controller.setTarget(0,self.OPEN)
         self.rps_controller.setTarget(1,self.OPEN)
         self.rps_controller.setTarget(2,self.OPEN)
         time.sleep(delay)
-    def scissors(self,delay=0.5):
+    def scissors(self,delay=0.01):
         #make scissors
         self.rps_controller.setTarget(0,self.OPEN)
         self.rps_controller.setTarget(1,self.OPEN)
-        self.rps_controller.setTarget(2,self.CLOSED-200)
+        self.rps_controller.setTarget(2,self.CLOSED)
         time.sleep(delay)
     def open_controller(self,port):
         if port=="dummy":
