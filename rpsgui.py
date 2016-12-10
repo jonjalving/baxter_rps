@@ -35,4 +35,5 @@ if __name__ == '__main__':
 	
 	rospy.init_node('baxter_hand')
 	rospy.Subscriber('/user_hand',std_msgs.msg.String,hand_callback)
+	rps.scissors()
 	rospy.spin()

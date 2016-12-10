@@ -15,7 +15,7 @@ cap.set(cv2.cv.CV_CAP_PROP_FRAME_WIDTH, 320)
 cap.set(cv2.cv.CV_CAP_PROP_FRAME_HEIGHT, 240)
 cap.set(cv2.cv.CV_CAP_PROP_FPS, 125)
 
-hand_list = [(80, 'rock'), (200, 'scissors'), (1000,'paper')]
+hand_list = [(75, 'rock'), (200, 'scissors'), (1000,'paper')]
 hand_list.sort()
 # ~25 for rock, ~70 for scissors, ~250 for paper (fingers spread)
 tstart = time.time()
@@ -79,8 +79,8 @@ while( cap.isOpened() ):
     except:
         print "error"
 
-    # cv2.imshow('output',drawing)
-    # cv2.imshow('input',img)
+    cv2.imshow('output',drawing)
+    cv2.imshow('input',img)
                 
     k = cv2.waitKey(1)
     if k == 27:

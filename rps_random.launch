@@ -16,7 +16,7 @@
     </node>   
   
    <node pkg="baxter_rps" type="baxter_brain.py" name="baxter_brain" respawn="false" output="screen">
-    <param name="mode" value="adaptive"/>
+    <param name="mode" value="random"/>
   </node>
    <node pkg="baxter_rps" type="cam.py" name="dummy_cam" respawn="false" />
     

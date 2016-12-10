@@ -31,7 +31,7 @@ class Baxter_RPS:
 		self.listening_flag = False
 		self.watching_flag = False
 		self.playing_flag = True
-		self.rps = RPS(port='/dev/ttyACM0')
+		self.rps = RPS(port='/dev/ttyACM3')
 		#self.rps = RPS(port='dummy')
 		self.counter = 0
 		self.game_counter = 0
@@ -40,9 +40,10 @@ class Baxter_RPS:
 		self.last_outcome = ""
 		self.start_interval = 0
 		self.belief_model = bayes_filter(["happy","meh","frustrated","quit"],np.array([1,0,0,0]))
-		self.quit_threshold = 0.2
+		self.quit_threshold = 0.15
 		self.detect_window_max = 5
 		self.detect_counter = 0
+		self.start_time = time.time()
 	def handle_input(self,msg):
 		if not self.listening_flag:
 			return
@@ -60,11 +61,11 @@ class Baxter_RPS:
 			#	time.sleep(0.01)
 			time.sleep(1)
 			speak(self.color_commentary())
-			logging.info(self.last_outcome+", delay: "+str(self.interval))
+			logger.info("Game number: "+str(self.game_counter)+", Result: "+self.last_outcome+", delay: "+str(self.interval))
 		else:
 			print "heard no"
 			now = time.time()
-			logger.info("Ending game at "+str(now)+ "Delay before NO was: "+str(now - self.start_interval))
+			logger.info("Ending game at "+str(now)+ " Delay before NO was: "+str(now - self.start_interval)+" Total game time was: "+str(now-self.start_time))
 			self.playing_flag = False
 		self.listening_flag = False
 		return
@@ -122,6 +123,7 @@ class Baxter_RPS:
 		return False
 
 	def game_loop(self):
+		self.start_time = self.start_interval
 		while(self.playing_flag):
 			time.sleep(0.005)
 			if self.game_counter > 0:
@@ -172,15 +174,16 @@ def speak(*args):
 
 if __name__ == '__main__':
 	rospy.init_node('baxter_brain')
-
+	mode = rospy.get_param('~mode')
 	#pwd = os.path.dirname(__file__)
 	#calc = Calculator(turtlename,os.path.join(pwd,"numbers.pkl"))
 	#when the speech recognizer publishes an output, run a callback that calls the speech command service
-	bgame = Baxter_RPS("adaptive")
+	bgame = Baxter_RPS(mode)
 	rospy.Subscriber('/hlpr_speech_commands', StampedString, bgame.handle_input)
 	rospy.Subscriber('/user_hand',std_msgs.msg.String,bgame.hand_callback)
-	speak("Hi,my name is Baxter, wanna play R P S with me?")
-	bgame.start_interval = time.time()
+	speak("Hi,my name is Baxter, wanna play Rock Paper Scissors with me?")
+	start_time = time.time()
+	bgame.start_interval = start_time
 	logger.info("Starting game at "+str(bgame.start_interval))
 	bgame.game_loop()
 	#rospy.spin()
