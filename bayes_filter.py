@@ -17,7 +17,8 @@ class bayes_filter:
 		self.states = states
 		self.belief = initial_belief
 		self.eps = 10e-4
-		self.emission_probabilities = [stats.norm(1,1),stats.norm(2,1),stats.norm(4,1),stats.norm(6,4)]
+		self.speedup_probabilities = [stats.norm(1.7,0.5),stats.norm(1.3,0.2),stats.skewnorm(5,0,1),stats.norm(-20,0.01)] #note the 4th distribution reflects that we should never get evidence that we are in the quit state, since the game would have been over
+		self.emission_probabilities = [stats.norm(1.7,1),stats.norm(2.5,1),stats.norm(3.5,1),stats.norm(-20,0.01)]
 		self.update_probabilities = np.array([[[0.4,0.5,0.09,0.01],	#win
 												[0.05,0.6,0.3,0.05],
 												[0.01,0.04,0.45,0.5],
@@ -46,7 +47,8 @@ class bayes_filter:
 	def action_update(self,new_belief):
 		self.logger.info("Action Update: "+str(new_belief))
 		self.belief = new_belief
-	def evidence_update(self,evidence):
+	def evidence_update(self,evidence,speedup=False):
+		speedup = True
 		eta = 0
 		print self.belief
 		print "interval: ",evidence
@@ -54,7 +56,11 @@ class bayes_filter:
 		for i,x in enumerate(self.belief):
 			print self.get_prob(evidence,self.emission_probabilities[i])
 			new_belief[i] = self.get_prob(evidence,self.emission_probabilities[i])*x
+			if speedup:
+				#new_belief[i] = 0.5*new_belief[i] + 0.5*self.get_prob(evidence,self.speedup_probabilities[i])*x
+				new_belief[i] = max(new_belief[i],self.get_prob(evidence,self.speedup_probabilities[i])*x)
 			eta += new_belief[i]
+		new_belief[-2] += new_belief[-1]
 		new_belief[-1] = 0
 		print "ETA::::",str(eta)
 		print "normalized:",(1.0/eta)*new_belief

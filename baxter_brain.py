@@ -31,7 +31,7 @@ class Baxter_RPS:
 		self.listening_flag = False
 		self.watching_flag = False
 		self.playing_flag = True
-		self.rps = RPS(port='/dev/ttyACM3')
+		self.rps = RPS(port='/dev/ttyACM0')
 		#self.rps = RPS(port='dummy')
 		self.counter = 0
 		self.game_counter = 0
@@ -40,7 +40,7 @@ class Baxter_RPS:
 		self.last_outcome = ""
 		self.start_interval = 0
 		self.belief_model = bayes_filter(["happy","meh","frustrated","quit"],np.array([1,0,0,0]))
-		self.quit_threshold = 0.15
+		self.quit_threshold = 0.17
 		self.detect_window_max = 5
 		self.detect_counter = 0
 		self.start_time = time.time()
@@ -50,17 +50,23 @@ class Baxter_RPS:
 		heard_phrase = msg.keyphrase
 		if(heard_phrase == "YES"):
 			self.interval = time.time()-self.start_interval
-			self.belief_model.evidence_update(self.interval)
+			print self.interval
+			if(self.game_counter > 0):
+				self.belief_model.evidence_update(self.interval)
 			#log the interval
 			self.game_counter += 1
-			speak("OK, Rock, Paper, Scissors")
+			time.sleep(0.25)
+			speak("OK")
+			time.sleep(0.75)
+			speak("Rock, Paper, Scissors")
 			#time.sleep(0.01) #delay 10ms to get latest from camera
 			#self.watching_flag = True
 			self.speak_thoughtfully("Shoot")
 			#while(not self.last_outcome):
 			#	time.sleep(0.01)
 			time.sleep(1)
-			speak(self.color_commentary())
+			#speak(self.color_commentary())
+			speak("Good game!")
 			logger.info("Game number: "+str(self.game_counter)+", Result: "+self.last_outcome+", delay: "+str(self.interval))
 		else:
 			print "heard no"
@@ -107,7 +113,7 @@ class Baxter_RPS:
 			#adaptive model
 			belief = np.ones(4)
 			i = 0
-			while belief[-1] > self.quit_threshold:
+			while belief[-1] > self.quit_threshold-(0*i) and i < len(strategies):
 				belief = self.belief_model.action_check(strategies[i])
 				i += 1
 
@@ -132,7 +138,7 @@ class Baxter_RPS:
 				self.start_interval = time.time()
 			self.listening_flag = True
 			while(self.listening_flag):
-				time.sleep(0.005)
+				time.sleep(0.001)
 			print "looping",self.playing_flag
 		speak("ok, thanks for playing. goodbye")
 
